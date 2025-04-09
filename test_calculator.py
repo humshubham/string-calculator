@@ -1,3 +1,4 @@
+import pytest
 from calculator import add
 
 def test_add_empty_string_returns_0():
@@ -18,9 +19,7 @@ def test_add_numbers_with_newline_delimiters():
 def test_add_with_custom_delimiter():
     assert add("//;\n1;2") == 3
 
-test_add_empty_string_returns_0()
-test_add_single_number_returns_itself()
-test_add_two_numbers_comma_separated()
-test_add_multiple_comma_separated_numbers()
-test_add_numbers_with_newline_delimiters()
-test_add_with_custom_delimiter()
+def test_add_with_negative_number_throws_exception():
+    with pytest.raises(Exception) as e:
+        add("1,-2")
+    assert "negative numbers not allowed -2" in str(e.value)
