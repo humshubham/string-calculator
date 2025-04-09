@@ -23,3 +23,8 @@ def test_add_with_negative_number_throws_exception():
     with pytest.raises(Exception) as e:
         add("1,-2")
     assert "negative numbers not allowed -2" in str(e.value)
+
+def test_add_with_multiple_negatives_throws_exception():
+    with pytest.raises(Exception) as e:
+        add("-1,-2,3")
+    assert "negative numbers not allowed -1/-2" in str(e.value)
